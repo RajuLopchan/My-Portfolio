@@ -1,4 +1,5 @@
 import { Box, Typography, Grid, Card, CardMedia, CardContent, CardActions, Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const projects = [
   {
@@ -24,11 +25,12 @@ const projects = [
 ];
 
 const ProjectsSection = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
-        backgroundColor: "#0f172a",
-        color: "white",
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
         py: { xs: 5, md: 10 },
         px: { xs: 3, sm: 5, md: 10, lg: 15 },
       }}
@@ -50,8 +52,8 @@ const ProjectsSection = () => {
           <Grid size={{xs: 12, sm: 6, md: 3}} key={index}>
             <Card
               sx={{
-                backgroundColor: "#1f2937",
-                color: "white",
+                backgroundColor: theme.palette.background.paper,
+                color: theme.palette.text.primary,
                 borderRadius: 3,
                 transition: "transform 0.3s ease",
                 "&:hover": {
@@ -69,7 +71,7 @@ const ProjectsSection = () => {
                 <Typography gutterBottom variant="h6" component="div" sx={{ fontWeight: "bold" }}>
                   {project.title}
                 </Typography>
-                <Typography variant="body2" color="#d1d5db">
+                <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
                   {project.description}
                 </Typography>
               </CardContent>
@@ -77,7 +79,7 @@ const ProjectsSection = () => {
                 <Button
                   size="small"
                   sx={{
-                    color: "#ff4c29",
+                    color: theme.palette.primary.main,
                     textTransform: "none",
                     fontWeight: 500,
                     "&:hover": { color: "#e63d17" },

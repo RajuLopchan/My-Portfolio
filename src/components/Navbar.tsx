@@ -33,11 +33,11 @@ const Navbar: React.FC = () => {
 
   return (
     <AppBar
-      position="static"
+      position="fixed"
+      elevation={0}
       sx={{
-        backgroundColor: theme.palette.mode === "dark" ? "#0f172a" : "#ffffff",
-        color: theme.palette.mode === "dark" ? "white" : "black",
-        borderBottom: "1px solid #374151",
+        backgroundColor: theme.palette.mode === "light" ? "#f8f9fa" : theme.palette.background.default,
+        color: theme.palette.text.primary,
       }}
     >
       <Box
@@ -55,6 +55,7 @@ const Navbar: React.FC = () => {
           sx={{
             fontWeight: "bold",
             cursor: "pointer",
+            color: "#72e2f9ff",
           }}
         >
           Raju Lopchan
@@ -69,7 +70,7 @@ const Navbar: React.FC = () => {
               disableRipple
               sx={{
                 my: 2,
-                color: theme.palette.mode === "dark" ? "white" : "black",
+                color: theme.palette.text.primary,
                 display: "block",
                 fontWeight: 300,
                 textTransform: "none",
@@ -82,7 +83,7 @@ const Navbar: React.FC = () => {
               {page}
             </Button>
           ))}
-          <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{ '&:hover': { backgroundColor: 'transparent' } }}>
             {theme.palette.mode === "dark" ? (
               <LightModeIcon />
             ) : (

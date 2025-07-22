@@ -1,4 +1,5 @@
 import { Box, Typography, Stack } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const skills = [
   { name: "HTML5" },
@@ -13,10 +14,11 @@ const skills = [
 ];
 
 const SkillsSection = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
-        backgroundColor: "#111827",
+        backgroundColor: theme.palette.background.default,
         py: { xs: 5, md: 8 },
         px: { xs: 3, sm: 5, md: 10, lg: 15 },
       }}
@@ -29,7 +31,7 @@ const SkillsSection = () => {
           alignItems: "center",
           flexWrap: "wrap",
           gap: 2,
-          backgroundColor: "#1f2937",
+          backgroundColor: theme.palette.background.paper,
           borderRadius: 1,
           padding: 1,
           borderRight:"none",
@@ -46,7 +48,7 @@ const SkillsSection = () => {
               whiteSpace: "nowrap",
               px: 2,
               py: 1,
-              color:'#b0b0b0ff'
+              color: theme.palette.text.secondary
             }}
           >
             {skill.name}

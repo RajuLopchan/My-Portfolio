@@ -1,6 +1,8 @@
 import { Box, Typography, Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const HeroSection = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -10,8 +12,9 @@ const HeroSection = () => {
         justifyContent: "space-between",
         px: { xs: 3, sm: 5, md: 10, lg: 15 },
         py: { xs: 5, md: 8 },
-        backgroundColor: "#0f172a",
+        backgroundColor: theme.palette.background.default,
         gap: { xs: 5, md: 0 },
+        mt: { xs: 7.5, sm: 8 }, // 60px-64px depending on screen size
       }}
     >
       {/* Left side text */}
@@ -24,13 +27,13 @@ const HeroSection = () => {
         <Typography
           variant="h5"
           sx={{
-            color: "white",
+            color: theme.palette.text.primary,
             fontWeight: 300,
             mb: 1,
             fontSize: { xs: "1.3rem", sm: "1.5rem", md: "2rem", lg: "2.5rem" },
           }}
         >
-          Hello<span style={{ color: "#ff4c29" }}>.</span>
+          Hello<span style={{ color: theme.palette.primary.main }}>.</span>
         </Typography>
 
         {/* "I'm Raju" with horizontal line */}
@@ -48,7 +51,7 @@ const HeroSection = () => {
             sx={{
               height: "3.5px",
               width: { xs: "20px", sm: "30px", md: "35px", lg: "60px" },
-              backgroundColor: "#ff4c29",
+              backgroundColor: theme.palette.primary.main,
               borderRadius: "5px",
             }}
           />
@@ -56,7 +59,7 @@ const HeroSection = () => {
           <Typography
             variant="h4"
             sx={{
-              color: "white",
+              color: theme.palette.text.primary,
               fontWeight: 400,
               fontSize: {
                 xs: "1.6rem",
@@ -74,7 +77,7 @@ const HeroSection = () => {
         <Typography
           variant="h3"
           sx={{
-            color: "white",
+            color: theme.palette.text.primary,
             fontWeight: "bold",
             mt: 1,
             fontSize: {
@@ -102,7 +105,7 @@ const HeroSection = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#ff4c29",
+              backgroundColor: theme.palette.primary.main,
               textTransform: "none",
               px: { xs: 4, sm: 3, md: 4, lg: 4, xl: 3.5 },
               py: 1.1,
@@ -123,8 +126,8 @@ const HeroSection = () => {
           <Button
             variant="outlined"
             sx={{
-              color: "white",
-              borderColor: "white",
+              color: theme.palette.text.primary,
+              borderColor: theme.palette.text.primary,
               textTransform: "none",
               px: { xs: 4, sm: 3 },
               py: 1.1,
@@ -137,9 +140,9 @@ const HeroSection = () => {
               },
               whiteSpace: "nowrap",
               "&:hover": {
-                backgroundColor: "white",
-                color: "#0f172a",
-                borderColor: "white",
+                backgroundColor: theme.palette.text.primary,
+                color: theme.palette.background.default,
+                borderColor: theme.palette.text.primary,
               },
             }}
           >
