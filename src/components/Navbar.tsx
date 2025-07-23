@@ -34,10 +34,12 @@ const Navbar: React.FC = () => {
   return (
     <AppBar
       position="fixed"
-      elevation={0}
+      elevation={theme.palette.mode === "light" ? 2 : 0}
       sx={{
-        backgroundColor: theme.palette.mode === "light" ? "#f8f9fa" : theme.palette.background.default,
-        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.default,
+        color: theme.palette.mode === "light" ? "#222" : theme.palette.text.primary,
+        boxShadow: theme.palette.mode === "light" ? "0 2px 8px rgba(0,0,0,0.04)" : "none",
+        borderBottom: "none",
       }}
     >
       <Box
@@ -45,44 +47,62 @@ const Navbar: React.FC = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          px: { xs: 2, sm: 4, md: 15 },
-          py: 1.5,
+          px: { xs: 2, sm: 4, md: 25 },
+          py: 0.8,
         }}
       >
         {/* Left side name */}
         <Typography
+          component="a"
+          href="#home"
           variant="h6"
           sx={{
             fontWeight: "bold",
+            fontSize: "1.8rem",
             cursor: "pointer",
-            color: "#72e2f9ff",
+            letterSpacing: 0.8,
+            textDecoration: 'none',
+            ...(theme.palette.mode === "light"
+              ? { color: "#2563eb" }
+              : { color: "#72e2f9ff" }),
           }}
         >
           Raju Lopchan
         </Typography>
 
         {/* Desktop nav links */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
-          {pages.map((page) => (
-            <Button
-              key={page}
-              onClick={handleCloseNavMenu}
-              disableRipple
-              sx={{
-                my: 2,
-                color: theme.palette.text.primary,
-                display: "block",
-                fontWeight: 300,
-                textTransform: "none",
-                "&:hover": {
-                  color: "#72e2f9ff",
-                  backgroundColor: "transparent",
-                },
-              }}
-            >
-              {page}
-            </Button>
-          ))}
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5, alignItems: 'center' }}>
+          {pages.map((page) => {
+            let linkProps = {};
+            if (page === "Home") linkProps = { component: 'a', href: '#home' };
+            if (page === "About") linkProps = { component: 'a', href: '#about' };
+            return (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                disableRipple
+                {...linkProps}
+                sx={{
+                  my: 1.5,
+                  color: theme.palette.mode === "light" ? "#222" : theme.palette.text.primary,
+                  display: "block",
+                  fontWeight: 400,
+                  textTransform: "none",
+                  fontSize: "0.9rem",
+                  letterSpacing: 0.5,
+                  borderRadius: 2,
+                  transition: "background 0.2s, color 0.2s",
+                  '&:hover': {
+                    color: theme.palette.mode === "light" ? "#2563eb" : "#72e2f9ff",
+                    backgroundColor: theme.palette.mode === "light" ? "#f3f6fa" : "transparent",
+                  },
+                }}
+              >
+                {page}
+              </Button>
+            );
+          })}
+          <Box sx={{ width: { md: 32, lg: 48 } }} /> {/* Add extra gap between links and theme toggle */}
           <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{ '&:hover': { backgroundColor: 'transparent' } }}>
             {theme.palette.mode === "dark" ? (
               <LightModeIcon />

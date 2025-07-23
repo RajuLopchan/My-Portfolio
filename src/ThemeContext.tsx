@@ -1,4 +1,4 @@
-import  { createContext, useMemo, useState, type ReactNode } from "react";
+import  { createContext, useMemo, useState, useEffect, type ReactNode } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export const ColorModeContext = createContext({
@@ -6,7 +6,22 @@ export const ColorModeContext = createContext({
 });
 
 const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
-  const [mode, setMode] = useState<"light" | "dark">("dark");
+  // Initialize mode from localStorage, fallback to 'light'
+  const getInitialMode = () => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('colorMode');
+      if (stored === 'light' || stored === 'dark') return stored;
+    }
+    return 'light';
+  };
+  const [mode, setMode] = useState<"light" | "dark">(getInitialMode());
+
+  // Update localStorage when mode changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('colorMode', mode);
+    }
+  }, [mode]);
 
   const colorMode = useMemo(
     () => ({
