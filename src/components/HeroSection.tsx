@@ -1,15 +1,29 @@
 import { Box, Typography, Button, IconButton } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Grid } from '@mui/material';
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 
 const HeroSection = () => {
   const theme = useTheme();
   const githubIconColor = theme.palette.mode === 'dark' ? '#fff' : '#181717';
+  const [animateKey, setAnimateKey] = useState(0);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      if (window.location.hash === "#home" || window.location.hash === "") {
+        setAnimateKey((k) => k + 1);
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   return (
     <Box
       id="home"
+      key={animateKey}
       sx={{
         height: "100vh",
         backgroundColor: theme.palette.background.default,
@@ -21,7 +35,13 @@ const HeroSection = () => {
     >
       <Grid container direction="row" spacing={8} width="73%" margin="auto" >
         <Grid size={{xs: 12, sm: 6, md: 8}}>
-          <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
             <Typography
               variant="h4"
               sx={{
@@ -39,6 +59,10 @@ const HeroSection = () => {
             </Typography>
 
             <Typography
+              component={motion.h1}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 1.2 }}
               variant="h3"
               sx={{
                 color: theme.palette.text.primary,
@@ -54,6 +78,10 @@ const HeroSection = () => {
             </Typography>
 
             <Typography
+              component={motion.p}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1.2 }}
               variant="body1"
               sx={{
                 color: theme.palette.text.secondary,
@@ -68,6 +96,10 @@ const HeroSection = () => {
 
             {/* Social Media Icons Row */}
             <Box
+              component={motion.div}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 1.2 }}
               sx={{
                 display: "flex",
                 mt: 3,
@@ -89,6 +121,10 @@ const HeroSection = () => {
               </IconButton>
             </Box>
             <Box
+              component={motion.div}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 1.2 }}
               sx={{
                 display: "flex",
                 gap: 3,
@@ -145,7 +181,7 @@ const HeroSection = () => {
 
         {/* Right side image */}
         <Grid
-       size={{xs: 12, sm: 6, md: 4}}
+          size={{xs: 12, sm: 6, md: 4}}
           sx={{
             display: "flex",
             mt: { xs: 5, md: 7.5 },
@@ -156,7 +192,6 @@ const HeroSection = () => {
               <Box
                 sx={{
                   position: 'absolute',
-                  // transform: 'translate(-50%, -50%)',
                   width: { xs: '120vw', sm: '110vw', md: '90vw' },
                   height: { xs: '90vw', sm: '80vw', md: '60vw' },
                   minWidth: 600,
@@ -170,7 +205,10 @@ const HeroSection = () => {
               />
             )}
             <Box
-              component="img"
+              component={motion.img}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7, duration: 1.5, type: "spring" }}
               src="/assets/images/raju.jpg"
               alt="Profile"
               sx={{
