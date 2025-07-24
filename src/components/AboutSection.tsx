@@ -75,7 +75,7 @@ const AboutMe = () => {
               About me
             </Typography>
             <Typography variant="body1" color={textSecondary} mb={4}>
-              My journey into web development began with curiosity, which soon became a passion for creating beautiful and responsive websites. As a frontend developer, I love building user-friendly interfaces that bring ideas to life
+              My journey into web development began with curiosity, which soon became a passion for creating beautiful and responsive websites. As a frontend developer, I thrive on bringing designs to life with clean code, modern frameworks, and a focus on performance and accessibility.
             </Typography>
 
             <Grid container spacing={6}>

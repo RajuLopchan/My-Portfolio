@@ -14,7 +14,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { useTheme } from "@mui/material/styles";
 import { ColorModeContext } from "../ThemeContext";
 
-const pages = ["Home", "About", "Skills", "Projects", "Contacts"];
+const pages = ["Home", "About","Services", "Skills", "Projects", "Contacts"];
 
 const Navbar: React.FC = () => {
   const theme = useTheme();
@@ -76,6 +76,7 @@ const Navbar: React.FC = () => {
             let linkProps = {};
             if (page === "Home") linkProps = { component: 'a', href: '#home' };
             if (page === "About") linkProps = { component: 'a', href: '#about' };
+            if (page === "Contacts") linkProps = { component: 'a', href: '#contact' };
             return (
               <Button
                 key={page}
@@ -102,7 +103,7 @@ const Navbar: React.FC = () => {
               </Button>
             );
           })}
-          <Box sx={{ width: { md: 32, lg: 48 } }} /> {/* Add extra gap between links and theme toggle */}
+          <Box sx={{ width: { md: 32, lg: 48 } }} />
           <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{ '&:hover': { backgroundColor: 'transparent' } }}>
             {theme.palette.mode === "dark" ? (
               <LightModeIcon />
@@ -141,11 +142,17 @@ const Navbar: React.FC = () => {
             onClose={handleCloseNavMenu}
           >
             {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" sx={{ width: "100%" }}>
-                  {page}
-                </Typography>
-              </MenuItem>
+              page === "Contacts"
+                ? <MenuItem key={page} onClick={handleCloseNavMenu} component="a" href="#contact">
+                    <Typography textAlign="center" sx={{ width: "100%" }}>
+                      {page}
+                    </Typography>
+                  </MenuItem>
+                : <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" sx={{ width: "100%" }}>
+                      {page}
+                    </Typography>
+                  </MenuItem>
             ))}
             <MenuItem onClick={colorMode.toggleColorMode}>
               <Typography textAlign="center" sx={{ width: "100%" }}>
