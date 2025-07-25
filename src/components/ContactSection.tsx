@@ -65,45 +65,56 @@ const ContactSection = () => {
   const iconColor = theme.palette.text.secondary;
 
   return (
-    <Box id="contact" sx={{ backgroundColor: theme.palette.background.default, color: theme.palette.text.primary, pt: 0 ,pb: 6}} mt={10}>
-      <Grid container spacing={8} width={"73%"} margin={"auto"}>
+    <Box
+      id="contact"
+      sx={{
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        width: { xs: '100%', md: '73%' },
+        py: { xs: 2.5, sm: 6, md: 8 },
+        px: { xs: 1.6, sm: 4, md: 4 },
+        mt: { xs: 4, sm: 0, md: 0 },
+        mx: 'auto',
+      }}
+    >
+      <Grid container spacing={8} width="100%" px={{ xs: 1, sm: 2, md: 0 }}>
         {/* Left Section */}
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Typography variant="h3" sx={{ fontWeight: "bold", color: '#fff' }}>
+        <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+          <Typography variant="h4" sx={{ fontWeight: "bold", color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main, textAlign: { xs: 'center', md: 'left' }, fontSize: { xs: '1.7rem', sm: '1.5rem', md: '1.5rem' } }}>
             <span>Let's</span>{" "}
             <span>talk</span>
           </Typography>
-          <Typography sx={{ mt: 2, color: theme.palette.text.secondary }}>
+          <Typography sx={{ mt: 2, color: theme.palette.text.secondary, textAlign: { xs: 'center', md: 'left' } , fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.2rem' }}}>
             I'm currently available to take on new projects, so feel free to send me a message about anything that you want me to work on. You can contact anytime.
           </Typography>
 
-          <Box sx={{ mt: 4 }}>
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-              <EmailIcon sx={{ mr: 2, color: iconColor }} />
-              <Typography sx={{ color: theme.palette.text.secondary }}>rajulopchan77@gmail.com</Typography>
+          <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' }, justifyContent: { xs: 'center', md: 'flex-start' } }}>
+            <Box sx={{ display: "flex", alignItems: "center", minHeight: 32, justifyContent: { xs: 'center', md: 'flex-start' }, textAlign: { xs: 'center', md: 'left' } }}>
+              <EmailIcon sx={{ mr: 1, color: iconColor, fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.5rem' } }} />
+              <Typography sx={{ color:'gray', fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' }, display: 'flex', alignItems: 'center' }}>rajulopchan77@gmail.com</Typography>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-              <PhoneIcon sx={{ mr: 2, color: iconColor }} />
-              <Typography sx={{ color: theme.palette.text.secondary }}>+977-9848095759</Typography>
+            <Box sx={{ display: "flex", alignItems: "center", minHeight: 32, justifyContent: { xs: 'center', md: 'flex-start' }, textAlign: { xs: 'center', md: 'left' } }}>
+              <PhoneIcon sx={{ mr: 1, color: iconColor, fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.5rem' } }} />
+              <Typography sx={{ color: 'gray', fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' }, display: 'flex', alignItems: 'center' }}>+977-9848095759</Typography>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <LocationOnIcon sx={{ mr: 2, color: iconColor }} />
-              <Typography sx={{ color: theme.palette.text.secondary }}>Kathmandu, Nepal</Typography>
+            <Box sx={{ display: "flex", alignItems: "center", minHeight: 32, justifyContent: { xs: 'center', md: 'flex-start' }, textAlign: { xs: 'center', md: 'left' } }}>
+              <LocationOnIcon sx={{ mr: 1, color: iconColor, fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.5rem' } }} />
+              <Typography sx={{ color:'gray', fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' }, display: 'flex', alignItems: 'center' }}>Kathmandu, Nepal</Typography>
             </Box>
           </Box>
         </Grid>
 
         {/* Right Section */}
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Typography variant="h4" sx={{ mb: 3, fontWeight: "bold", color: '#fff' }}>
+        <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+          <Typography variant="h4" sx={{ mb: 3, fontWeight: "bold", color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main, textAlign: { xs: 'center', md: 'left' }, fontSize: { xs: '1.7rem', sm: '1.5rem', md: '1.5rem' } }}>
             Get in <span>touch</span>
           </Typography>
 
-          <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: 'center' }}>
             <TextField
               label="Your Name"
               name="name"
-              variant="filled"
+              variant="outlined"
               fullWidth
               value={values.name}
               onChange={handleChange}
@@ -120,15 +131,24 @@ const ContactSection = () => {
                 '& .MuiFormLabel-root.Mui-error': {
                   color: '#888',
                 },
-                '& .MuiFilledInput-underline:after': {
-                  borderBottomColor: '#ccc',
+                '& .MuiOutlinedInput-root': {
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                    borderWidth: '1px',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                  },
+                  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                  },
                 },
               }}
             />
             <TextField
               label="Your Email"
               name="email"
-              variant="filled"
+              variant="outlined"
               fullWidth
               value={values.email}
               onChange={handleChange}
@@ -145,15 +165,24 @@ const ContactSection = () => {
                 '& .MuiFormLabel-root.Mui-error': {
                   color: '#888',
                 },
-                '& .MuiFilledInput-underline:after': {
-                  borderBottomColor: '#ccc',
+                '& .MuiOutlinedInput-root': {
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                    borderWidth: '1px',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                  },
+                  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                  },
                 },
               }}
             />
             <TextField
               label="Write your message here"
               name="message"
-              variant="filled"
+              variant="outlined"
               multiline
               rows={4}
               fullWidth
@@ -172,12 +201,37 @@ const ContactSection = () => {
                 '& .MuiFormLabel-root.Mui-error': {
                   color: '#888',
                 },
-                '& .MuiFilledInput-underline:after': {
-                  borderBottomColor: '#ccc',
+                '& .MuiOutlinedInput-root': {
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                    borderWidth: '1px',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                  },
+                  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.mode === 'light' ? '#d1d5db' : '#444',
+                  },
                 },
               }}
             />
-            <Button type="submit" variant="contained" color="secondary" sx={{ mt: 2, width: "fit-content" }}>
+            <Button type="submit" variant="contained"
+              sx={{
+                backgroundColor: theme.palette.primary.main,
+                textTransform: "none",
+                borderRadius: 2,
+                px: { xs: 4, sm: 3, md: 2 },
+                fontSize: {
+                  xs: "0.75rem",
+                  sm: "1rem",
+                  md: "1rem",
+                },
+                whiteSpace: "nowrap",
+                mt: 2,
+                width: "fit-content",
+                "&:hover": { backgroundColor: "#e63d17" },
+              }}
+            >
               Send Message
             </Button>
           </Box>

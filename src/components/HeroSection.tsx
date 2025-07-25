@@ -25,22 +25,25 @@ const HeroSection = () => {
       id="home"
       key={animateKey}
       sx={{
-        height: "100vh",
+        height: { xs: 'auto', md: '100vh' },
+        minHeight: { xs: '100vh', md: 'unset' },
         backgroundColor: theme.palette.background.default,
-        py: { xs: 5, md: 8 },
+        py: { xs: 1.5, sm: 6, md: 8 },
+        px: { xs: 2, sm: 2, md: 0 },
+        mt: { xs: 1.3, sm: 0, md: 0 },
         overflow: "hidden",
         display: "flex",
-        alignItems: "center",
+        alignItems: { xs: 'flex-start', md: 'center' },
       }}
     >
-      <Grid container direction="row" spacing={8} width="73%" margin="auto" >
+      <Grid container direction={{ xs: 'column-reverse', md: 'row' }} spacing={{ xs: 0, sm: 6, md: 8 }} width={{ xs: '100%', md: '73%' }} margin="auto" alignItems="center">
         <Grid size={{xs: 12, sm: 6, md: 8}}>
           <Box
             component={motion.div}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            sx={{ textAlign: { xs: "center", md: "left" } }}
+            sx={{ textAlign: { xs: "center", md: "left" }, px: { xs: 1, sm: 2, md: 0 } }}
           >
             <Typography
               variant="h4"
@@ -48,8 +51,8 @@ const HeroSection = () => {
                 color: theme.palette.text.primary,
                 fontWeight: 400,
                 fontSize: {
-                  xs: "1.6rem",
-                  sm: "2.5rem",
+                  xs: "1.4rem",
+                  sm: "2.1rem",
                   md: "2.5rem",
                 },
                 mb: 1,
@@ -68,8 +71,8 @@ const HeroSection = () => {
                 color: theme.palette.text.primary,
                 fontWeight: "bold",
                 fontSize: {
-                  xs: "1.7rem",
-                  sm: "2rem",
+                  xs: "1.6rem",
+                  sm: "1.7rem",
                   md: "2.5rem",
                 },
               }}
@@ -86,9 +89,9 @@ const HeroSection = () => {
               sx={{
                 color: theme.palette.text.secondary,
                 fontWeight: 400,
-                mt: 3.5,
+                mt: { xs: 2, md: 3.5 },
                 maxWidth: { xs: "100%", md: "80%" },
-                fontSize: { xs: "1rem", md: "1.05rem" },
+                fontSize: { xs: "0.9rem", sm: "1rem", md: "1.05rem" },
               }}
             >
               A Frontend Developer focused on creating clean, responsive, and user-friendly websites. I enjoy turning ideas into interactive designs that deliver seamless digital experiences.
@@ -102,8 +105,8 @@ const HeroSection = () => {
               transition={{ delay: 0.7, duration: 1.2 }}
               sx={{
                 display: "flex",
-                mt: 3,
-                gap: 2.4,
+                mt: { xs: 2, md: 3 },
+                gap: { xs: 1.5, sm: 2.4 },
                 ml: 0.2,
                 justifyContent: { xs: "center", md: "flex-start" },
               }}
@@ -127,11 +130,11 @@ const HeroSection = () => {
               transition={{ delay: 0.9, duration: 1.2 }}
               sx={{
                 display: "flex",
-                gap: 3,
-                mt: 7,
+                gap: { xs: 1.5, sm: 3 },
+                mt: { xs: 4, md: 7 },
                 justifyContent: { xs: "center", md: "flex-start" },
-                flexWrap: { xs: "nowrap", sm: "wrap" },
-                overflowX: { xs: "auto", sm: "visible" },
+                flexWrap: { xs: "wrap", sm: "wrap" },
+                overflowX: { xs: "visible", sm: "visible" },
               }}
             >
               <Button
@@ -140,7 +143,7 @@ const HeroSection = () => {
                   backgroundColor: theme.palette.primary.main,
                   textTransform: "none",
                   borderRadius: 2,
-                  px: { xs: 4, sm: 3, md: 2 },
+                  px: { xs: 3, sm: 3, md: 2 },
                   fontSize: {
                     xs: "0.75rem",
                     sm: "1rem",
@@ -181,26 +184,29 @@ const HeroSection = () => {
 
         {/* Right side image */}
         <Grid
-          size={{xs: 12, sm: 6, md: 4}}
+         size={{xs: 12, sm: 6, md: 4}}
           sx={{
             display: "flex",
-            mt: { xs: 5, md: 7.5 },
+            justifyContent: { xs: "center", md: "flex-end" },
+            alignItems: { xs: "center", md: "flex-start" },
+            mt: { xs: 2, md: 7.5 },
+            mb: { xs: 4, md: 0 },
           }}
         >
-          <Box sx={{ position: 'relative', display: 'inline-block', width: '100%', height: '100%' }}>
+          <Box sx={{ position: 'relative', display: 'inline-block', width: { xs: 160, sm: 180, md: 240 }, height: { xs: 160, sm: 180, md: 240 } }}>
             {theme.palette.mode === 'dark' && (
               <Box
                 sx={{
                   position: 'absolute',
-                  width: { xs: '120vw', sm: '110vw', md: '90vw' },
-                  height: { xs: '90vw', sm: '80vw', md: '60vw' },
-                  minWidth: 600,
-                  minHeight: 400,
+                  width: { xs: '90vw', sm: '110vw', md: '90vw' },
+                  height: { xs: '60vw', sm: '80vw', md: '60vw' },
+                  minWidth: { xs: 160, md: 600 },
+                  minHeight: { xs: 160, md: 400 },
                   borderRadius: '48% / 60%',
                   zIndex: 0,
                   pointerEvents: 'none',
                   background: `radial-gradient(ellipse at center, ${theme.palette.primary.main}25 0%, ${theme.palette.primary.main}09 50%, transparent 85%)`,
-                  filter: 'blur(48px)',
+                  filter: 'blur(32px)',
                 }}
               />
             )}
@@ -212,13 +218,12 @@ const HeroSection = () => {
               src="/assets/images/raju.jpg"
               alt="Profile"
               sx={{
-                width: { xs: 140, sm: 180, md: 240 },
-                height: { xs: 140, sm: 180, md: 240 },
+                width: { xs: 160, sm: 180, md: 240 },
+                height: { xs: 160, sm: 180, md: 240 },
                 objectFit: "cover",
                 borderRadius: "50%",
                 position: 'relative',
                 zIndex: 1,
-                ml: { xs: 0, md: 6.5 },
               }}
             />
           </Box>

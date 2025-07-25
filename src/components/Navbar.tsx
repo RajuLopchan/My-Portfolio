@@ -58,13 +58,17 @@ const Navbar: React.FC = () => {
           variant="h6"
           sx={{
             fontWeight: "bold",
-            fontSize: "1.8rem",
+            fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.8rem' },
             cursor: "pointer",
             letterSpacing: 0.8,
             textDecoration: 'none',
+            background: 'linear-gradient(90deg, #ff4c29 0%, #8245ec 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
             ...(theme.palette.mode === "light"
-              ? { color: "#2563eb" }
-              : { color: "#72e2f9ff" }),
+              ? {}
+              : {}),
           }}
         >
           Raju Lopchan
@@ -77,6 +81,7 @@ const Navbar: React.FC = () => {
             if (page === "Home") linkProps = { component: 'a', href: '#home' };
             if (page === "About") linkProps = { component: 'a', href: '#about' };
             if (page === "Contacts") linkProps = { component: 'a', href: '#contact' };
+            if (page === "Skills") linkProps = { component: 'a', href: '#skills' };
             return (
               <Button
                 key={page}
@@ -113,8 +118,15 @@ const Navbar: React.FC = () => {
           </IconButton>
         </Box>
 
-        {/* Mobile Menu Icon */}
-        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+        {/* Mobile Theme Icon + Menu Icon */}
+        <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: 'center', gap: 1 }}>
+          <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{ p: 0, '&:hover': { backgroundColor: 'transparent' } }}>
+            {theme.palette.mode === "dark" ? (
+              <LightModeIcon />
+            ) : (
+              <DarkModeIcon />
+            )}
+          </IconButton>
           <IconButton
             size="large"
             aria-label="menu"
@@ -122,6 +134,7 @@ const Navbar: React.FC = () => {
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
             color="inherit"
+            sx={{ p: 0 }}
           >
             <MenuIcon />
           </IconButton>
@@ -148,17 +161,12 @@ const Navbar: React.FC = () => {
                       {page}
                     </Typography>
                   </MenuItem>
-                : <MenuItem key={page} onClick={handleCloseNavMenu}>
+                : <MenuItem key={page} onClick={handleCloseNavMenu} component="a" href={`#${page.toLowerCase()}`}>
                     <Typography textAlign="center" sx={{ width: "100%" }}>
                       {page}
                     </Typography>
                   </MenuItem>
             ))}
-            <MenuItem onClick={colorMode.toggleColorMode}>
-              <Typography textAlign="center" sx={{ width: "100%" }}>
-                {theme.palette.mode === "dark" ? "Light Mode" : "Dark Mode"}
-              </Typography>
-            </MenuItem>
           </Menu>
         </Box>
       </Box>

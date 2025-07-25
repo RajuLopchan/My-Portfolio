@@ -33,7 +33,7 @@ export const SkillsInfo = [
     ],
   },
   {
-    title: 'Database',
+    title: 'Backend/Database',
     skills: [
       { name: 'MongoDB', logo: mongodbLogo },
       { name: 'MySQL', logo: mysqlLogo },
