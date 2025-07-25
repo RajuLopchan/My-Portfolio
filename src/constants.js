@@ -13,7 +13,7 @@ export const projects = [
     id: 1,
     title: "CS Prep",
     description:
-      "A full-stack quiz-based platform designed for GATE/UGC NET students to practice previous year questions and create customized tests. The platform offers comprehensive profile stats and detailed results, helping students track and improve their preparation journey effectively.",
+      "A full-stack quiz-based platform designed for GATE/UGC NET students to practice previous year questions and create customized tests.",
     image: '/assets/work_logo/cs_prep.png',
     tags: ["React JS", "Node.js", "MongoDB", "Express", "HTML", "CSS", "JavaScript"],
     github: "https://github.com/codingmastr/CSPrep",

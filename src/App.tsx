@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar"
 import ContactSection from "./components/ContactSection"
 import ProjectsSection from "./components/ProjectsSection"
 import SkillsSection from "./components/SkillsSection"
+import FooterSection from "./components/FooterSection"
+import CertificateSection from "./components/CertificateSection"
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
+      <CertificateSection />
       <ContactSection />
+      <FooterSection />
     </div>
   )
 }

@@ -72,7 +72,7 @@ const ContactSection = () => {
         color: theme.palette.text.primary,
         width: { xs: '100%', md: '73%' },
         py: { xs: 2.5, sm: 6, md: 8 },
-        px: { xs: 1.6, sm: 4, md: 4 },
+        px: { xs: 1.6, sm: 4, md: 0 },
         mt: { xs: 4, sm: 0, md: 0 },
         mx: 'auto',
       }}
