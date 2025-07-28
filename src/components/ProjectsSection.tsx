@@ -8,7 +8,10 @@ import {
   Chip,
   Button,
   useTheme,
-  IconButton
+  IconButton,
+  Card,
+  CardContent,
+  CardMedia
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -23,26 +26,43 @@ const ProjectsSection = () => {
   const project = projects[current];
 
   return (
-    <Box id="projects" sx={{ width: { xs: '100%', md: '73%' }, mx: 'auto', py: { xs: 4, md: 4 }, px: { xs: 2.5, sm: 2, md: 0 }, fontFamily: 'sans-serif', position: 'relative', background: theme.palette.background.default }}>
-      <Box sx={{ textAlign: 'center', mb: 8 }}>
-        <Typography variant="h4" fontWeight="bold" sx={{ color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main, fontSize: { xs: 25, sm: 28, md: 32 } }}>
+    <Box id="projects" sx={{ width: { xs: '100%', md: '73%' }, mx: 'auto', pt: { xs: 4, md: 12 }, px: { xs: 2.5, sm: 2, md: 0 }, fontFamily: 'sans-serif', position: 'relative', background: theme.palette.background.default }}>
+      <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 } }}>
+        <Typography variant="h4" fontWeight="bold" sx={{ color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main, fontSize: { xs: 25, sm: 28, md: 25 } }}>
           PROJECTS
         </Typography>
-        <Box sx={{ width: { xs: 100, sm: 128 }, height: 4, background: '#8245ec', mx: 'auto', mt: 2, borderRadius: 2 }} />
-        <Typography color={theme.palette.text.secondary} mt={2} fontSize={{ xs: 15, sm: 18, md: 18 }} fontWeight={600}>
+        <Box sx={{ width: { xs: 100, sm: 90 }, height: 3, background: '#8245ec', mx: 'auto', mt: 0.8, borderRadius: 2 }} />
+        <Typography color={theme.palette.text.secondary} mt={2} fontSize={{ xs: 15, sm: 18, md: 15 }} fontWeight={600}>
           A showcase of the projects I have worked on, highlighting my skills and experience in various technologies
         </Typography>
       </Box>
-      <Box sx={{ width: '100%', mx: 'auto', borderRadius: 4, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)', border: `2.5px solid ${theme.palette.background.default}`, background: theme.palette.mode === 'dark' ? '#23272f' : '#fff', p: { xs: 1.5, sm: 3, md: 4 }, transition: 'box-shadow 0.3s, border 0.3s', mb: 6 }}>
+
+      {/* Desktop Layout */}
+      <Box sx={{ display: { xs: 'none', md: 'block' }, width: '100%', mx: 'auto', borderRadius: 4, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)', border: `2.5px solid ${theme.palette.background.default}`, background: theme.palette.mode === 'dark' ? '#23272f' : '#f5f7fa', p: { xs: 1.5, sm: 3, md: 4 }, transition: 'box-shadow 0.3s, border 0.3s', mb: 6 }}>
         <Grid container spacing={0} alignItems="center" justifyContent="center">
           <Grid size={{ xs: 12, md: 6 }} sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', mb: { xs: 3, md: 0 }, minHeight: { xs: 220, sm: 300, md: 360 }, maxHeight: { xs: 220, sm: 300, md: 360 }, zIndex: 10 }}>
             <Box sx={{ width: '100%', maxWidth: { xs: 480, md: '100%' }, height: { xs: 220, sm: 300, md: 360 }, minHeight: { xs: 220, sm: 300, md: 360 }, maxHeight: { xs: 220, sm: 300, md: 360 }, overflow: 'visible', borderRadius: 3, background: 'none', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
               <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }} />
-              <Box sx={{ position: 'absolute', top: '50%', right: -60, width: 120, transform: 'translateY(-50%)', backgroundColor: 'rgb(23, 124, 255)', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 0.4, zIndex: 20, minHeight: 48, boxShadow: '0 6px 24px 0 rgba(0,0,0,0.18)' }}>
+              <Box sx={{
+                position: 'absolute',
+                top: '50%',
+                right: -60,
+                transform: 'translateY(-50%)',
+                width: 120,
+                backgroundColor: 'rgb(23, 124, 255)',
+                borderRadius: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: 0.4,
+                zIndex: 20,
+                minHeight: 48,
+                boxShadow: '0 6px 24px 0 rgba(0,0,0,0.18)'
+              }}>
                 <IconButton onClick={handlePrev} sx={{ color: '#fff', mx: 1, fontSize: 22 }} size="large" aria-label="Previous project">
                   <ArrowBackIcon fontSize="inherit" />
                 </IconButton>
-                <IconButton onClick={handleNext} sx={{ color: '#fff', mx: 1, fontSize: 22}} size="large" aria-label="Next project">
+                <IconButton onClick={handleNext} sx={{ color: '#fff', mx: 1, fontSize: 22 }} size="large" aria-label="Next project">
                   <ArrowForwardIcon fontSize="inherit" />
                 </IconButton>
               </Box>
@@ -79,10 +99,10 @@ const ProjectsSection = () => {
                 ))}
               </Box>
               <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
-                <Button variant="contained" color="primary" href={project.github} target="_blank" rel="noopener noreferrer" sx={{ borderRadius: 8, px: 3, py: 1.2, fontWeight: 600, fontSize: 16 }}>
+                <Button variant="contained" color="primary" href={project.github} target="_blank" rel="noopener noreferrer" sx={{ borderRadius: 2, px: 2.5, fontWeight: 600, fontSize: { xs: 13, sm: 15 } }}>
                   View Code
                 </Button>
-                <Button variant="outlined" color="primary" href={project.webapp} target="_blank" rel="noopener noreferrer" sx={{ borderRadius: 8, px: 3, py: 1.2, fontWeight: 600, fontSize: 16 }}>
+                <Button variant="outlined" color="primary" href={project.webapp} target="_blank" rel="noopener noreferrer" sx={{ borderRadius: 2, px: 2.5, fontWeight: 600, fontSize: { xs: 13, sm: 15 } }}>
                   Live View
                 </Button>
               </Box>
@@ -90,7 +110,136 @@ const ProjectsSection = () => {
           </Grid>
         </Grid>
       </Box>
-      <Grid size={{ xs: 12, md: 2 }} sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+
+      {/* Mobile Layout */}
+      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+        <Card
+          sx={{
+            borderRadius: 3,
+            boxShadow: '0 8px 32px 0 rgba(0,0,0,0.15)',
+            border: `1px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
+            background: theme.palette.mode === 'dark' ? '#1a1a1a' : '#f5f7fa',
+            overflow: 'hidden',
+            mb: 3
+          }}
+        >
+          <CardMedia
+            component="img"
+            height="200"
+            image={project.image}
+            alt={project.title}
+            sx={{ objectFit: 'cover' }}
+          />
+          <CardContent sx={{ p: 3 }}>
+            <Typography variant="h5" fontWeight="bold" sx={{ color: theme.palette.primary.main, fontSize: 20, mb: 1 }}>
+              {project.title}
+            </Typography>
+
+            {project.lead && (
+              <Typography color={theme.palette.text.secondary} sx={{ fontSize: 16, fontWeight: 500, mb: 2 }}>
+                {project.lead}
+              </Typography>
+            )}
+
+            <Typography color={theme.palette.text.secondary} sx={{ fontSize: 14, mb: 3, lineHeight: 1.6 }}>
+              {project.description}
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+              {project.tags.map((tag, idx) => (
+                <Chip
+                  key={idx}
+                  label={tag}
+                  size="small"
+                  sx={{
+                    background: theme.palette.mode === 'light' ? '#f3f6fa' : '#263159',
+                    color: theme.palette.mode === 'light' ? '#333' : '#fff',
+                    fontWeight: 600,
+                    borderRadius: 1,
+                    fontSize: 11,
+                    height: 24,
+                  }}
+                />
+              ))}
+            </Box>
+
+            <Box sx={{ display: 'flex', gap: 1.5 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="small"
+                sx={{
+                  borderRadius: 2,
+                  px: 1.5,
+                  py: 0.8,
+                  fontWeight: 600,
+                  fontSize: { xs: 11, sm: 13 },
+                  textTransform: 'none',
+                  flex: 1,
+                  minWidth: 'auto'
+                }}
+              >
+                View Code
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                href={project.webapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="small"
+                sx={{
+                  borderRadius: 2,
+                  px: 1.5,
+                  py: 0.8,
+                  fontWeight: 600,
+                  fontSize: { xs: 11, sm: 13 },
+                  textTransform: 'none',
+                  flex: 1,
+                  minWidth: 'auto'
+                }}
+              >
+                Live View
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
+
+        {/* Mobile Navigation Dots */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 2 }}>
+          {projects.map((_, idx) => (
+            <Box
+              key={idx}
+              onClick={() => setCurrent(idx)}
+              sx={{
+                width: 12,
+                height: 12,
+                borderRadius: '50%',
+                background: idx === current ? theme.palette.primary.main : theme.palette.grey[400],
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                '&:hover': {
+                  background: idx === current ? theme.palette.primary.main : theme.palette.grey[500],
+                  transform: 'scale(1.1)'
+                }
+              }}
+            />
+          ))}
+        </Box>
+
+        {/* Mobile Swipe Indicator */}
+        <Box sx={{ textAlign: 'center', mt: 2 }}>
+          <Typography variant="caption" color={theme.palette.text.secondary} sx={{ fontSize: 12 }}>
+            {current + 1} of {total}
+          </Typography>
+        </Box>
+      </Box>
+
+      {/* Desktop Navigation Dots */}
+      <Grid size={{ xs: 12, md: 2 }} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', mt: 3 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
           {projects.map((_, idx) => (
             <Box key={idx} sx={{ width: 10, height: 10, borderRadius: '50%', background: idx === current ? theme.palette.primary.main : theme.palette.grey[400], transition: 'background 0.2s' }} />

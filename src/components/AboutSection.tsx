@@ -1,129 +1,168 @@
-import { Box, Typography, Grid } from "@mui/material";
-import { Code, PhoneIphone, Cloud } from "@mui/icons-material";
-import { useTheme } from "@mui/material/styles";
+import { Box, Typography, Grid, useTheme } from "@mui/material";
+import {  School, Work  } from "@mui/icons-material";
 
-const AboutMe = () => {
+const AboutSection = () => {
   const theme = useTheme();
-  const textSecondary = theme.palette.text.secondary;
-  const accent = theme.palette.primary.main;
-  const iconColor = theme.palette.mode === 'dark' ? '#fff' : accent;
+
+  const experiences = [
+    {
+      title: "Web Developer Intern",
+      company: "Fintech Nepal",
+      period: "2024 - 2025",
+      description: "Collaborated on various web projects and learned industry best practices."
+    }
+  ];
+
+  const education = [
+    {
+      degree: "Bachelor's in Computer Science",
+      institution: "Tribhuvan University",
+      period: "2021 - 2025",
+      description: "Focused on software development and web technologies."
+    }
+  ];
+
   return (
+    <Box
+      id="about"
+      sx={{
+        width: { xs: '100%', md: '69%' },
+        mx: 'auto',
+        pt: { xs: 4, md: 12 },
+       
+        px: { xs: 2, sm: 4, md: 0 },
+        backgroundColor: theme.palette.background.default,
+        minHeight: 'auto',
+      }}
+    >
+      {/* Header Section */}
+        <Box sx={{ textAlign: 'center', mb: 5 }}>
+          <Typography 
+            variant="h5" 
+            fontWeight="bold" 
+            sx={{ 
+              color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main,
+              fontSize: { xs: 16, sm: 20, md: 26 },
+              mb: 0.5
+            }}
+          >
+            About Me
+          </Typography>
+          <Box 
+            sx={{ 
+              width: { xs: 80, sm: 100, md: 80 }, 
+              height: 3, 
+              background: 'linear-gradient( #8245ec 100%)', 
+              mx: 'auto', 
+              borderRadius: 2 
+            }} 
+          />
+        </Box>
+        <Box 
+          sx={{ 
+            borderRadius: 2, 
+            background: theme.palette.mode === 'light' ? '#f5f7fa' : undefined,
+            border: `1px solid ${theme.palette.mode === 'dark' ? 'gray' : '#e0e0e0'}`,
+            overflow: 'hidden',
+            height: '100%',
+          }}
+        >
+   
+            <Grid container spacing={4} sx={{ overflow: 'hidden', p: { xs: 1, sm: 2, md: 2 } }}>
+              <Grid size={{ xs: 12, md: 4 }} >
+                <Box
+                  component="img"
+                  src="/assets/images/raju.jpg"
+                  alt="Raju Lopchan"
+                  sx={{
+                    width: '100%',
+                    objectFit: 'contain',
+                    borderRadius: 2,
+                  }}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 8 }} sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <Box display="flex" flexDirection="column" gap={1.5} mb={4}>
+                    <Typography variant="h5" fontWeight="bold" sx={{fontSize: { xs: 16, sm: 20, md: 21 }}}>
+                      My Journey
+                    </Typography>
+                  <Typography 
+                    variant="body1" 
+                    color={theme.palette.text.secondary}
+                    sx={{ lineHeight: 1.8, fontSize: { xs: 14, sm: 16, md: 14 } }}
+                  >
+                    My journey into web development began with curiosity about how websites work. 
+                    What started as a hobby quickly evolved into a passion for creating beautiful and 
+                    functional digital experiences. I specialize in modern frontend technologies, 
+                    particularly React and JavaScript, and I'm always eager to learn new frameworks 
+                    and tools to deliver exceptional user experiences.
+                  </Typography>
+                 
+                </Box>
 
-      <Box
-        sx={{
-          overflowX: 'hidden',
-          maxWidth: '100vw',
-          width: { xs: '100%', md: '73%' },
-          minHeight: { xs: '100vh', md: 'unset' },
-          py: { xs: 2, sm: 6, md: 8 },
-          px: { xs: 2.5, sm: 2, md: 0 },
-          mt: { xs: 4, sm: 0, md: 0 },
-          mx: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Grid container spacing={6} width="100%" marginX={0} mt={{ xs: 2, md: 5 }} mb={{ xs: 2, md: 6 }} px={{ xs: 2.5, sm: 2, md: 0 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Box id="about" sx={{ position: 'relative', minHeight: 220 }}>
+                {/* Experience & Education Grid */}
+                <Grid container spacing={8}>
+                  {/* Experience */}
+                  <Grid size={{ xs: 12, md: 6 }} >
+                   
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <Work sx={{ color: theme.palette.primary.main, mr: 2, fontSize: 26 }} />
+                        <Typography variant="h5" fontWeight="bold" sx={{fontSize: { xs: 16, sm: 20, md: 17 }}}>
+                          Experience
+                        </Typography>
+                      </Box>
+                      {experiences.map((exp, index) => (
+                        <Box key={index}>
+                          <Typography variant="h6" fontWeight="bold" sx={{ mb: 1, fontSize: { xs: 14, sm: 16, md: 14 } }}>
+                            {exp.title}
+                          </Typography>
+                          <Typography variant="body2" color="primary" fontWeight="600" sx={{ mb: 1, fontSize: { xs: 14, sm: 16, md: 14 } }}>
+                            {exp.company}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: 'block', fontSize: { xs: 14, sm: 16, md: 12 } }}>
+                            {exp.period}
+                          </Typography>
+                          <Typography variant="body2" color={theme.palette.text.secondary} sx={{fontSize: { xs: 14, sm: 16, md: 12 }}}>
+                            {exp.description}
+                          </Typography>
+                        </Box>
+                      ))}
+                   
+                  </Grid>
 
-              <Box sx={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: 2,
-                height: 'calc(33% - 10px)',
-                bgcolor: accent,
-                zIndex: 1,
-                borderRadius: 2,
-              }} />
-
-              <Box sx={{
-                position: 'absolute',
-                left: 0,
-                top: 'calc(33% + 10px)',
-                width: 2,
-                height: 'calc(34% - 10px)',
-                bgcolor: accent,
-                zIndex: 1,
-                borderRadius: 2,
-              }} />
-
-              <Box sx={{
-                position: 'absolute',
-                left: 0,
-                top: 'calc(67% + 10px)',
-                width: 2,
-                height: 'calc(33% - 10px)',
-                bgcolor: accent,
-                zIndex: 1,
-                borderRadius: 2,
-              }} />
-
-              <Box sx={{ position: 'absolute', left: -1.5, top: '33%', width: 6, height: 6, bgcolor: accent, borderRadius: '50%', zIndex: 2, transform: 'translateY(-50%)' }} />
-
-              <Box sx={{ position: 'absolute', left: -1.5, top: '67%', width: 6, height: 6, bgcolor: accent, borderRadius: '50%', zIndex: 2, transform: 'translateY(-50%)' }} />
-
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, position: 'absolute', top: '18%', left: 20, transform: 'translateY(-50%)' }}>
-                <Code sx={{ fontSize: 30, color: iconColor }} />
-                <Typography variant="h6">Website Development</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, position: 'absolute', top: '48%', left: 20, transform: 'translateY(-50%)' }}>
-                <PhoneIphone sx={{ fontSize: 30, color: iconColor }} />
-                <Typography variant="h6">App Development</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, position: 'absolute', bottom: '14%', left: 20 }}>
-                <Cloud sx={{ fontSize: 30, color: iconColor }} />
-                <Typography variant="h6">Website Hosting</Typography>
-              </Box>
-            </Box>
-          </Grid>
-
-          {/* Right Side - About Me */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main, fontSize: { xs: 24, sm: 28, md: 32 }, textAlign: { xs: 'center', md: 'left' } }}>
-              About me
-            </Typography>
-            <Typography variant="body1" color={textSecondary} mb={4} sx={{ textAlign: { xs: 'center', md: 'left' }, fontSize: { xs: '0.9rem', sm: '1rem', md: '1.05rem' } }}>
-              My journey into web development began with curiosity, which soon became a passion for creating beautiful and responsive websites. As a frontend developer, I thrive on bringing designs to life with clean code, modern frameworks, and a focus on performance and accessibility.
-            </Typography>
-
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                gap: 4,
-                alignItems: 'center',
-                justifyContent: { xs: 'center', md: 'flex-start' },
-                textAlign: { xs: 'center', md: 'left' },
-              }}
-            >
-              <Box sx={{ minWidth: 120 }}>
-                <Typography variant="h4" sx={{ color: accent, fontWeight: 'bold', fontSize: { xs: 26, sm: 28, md: 32 } }}>
-                  12 +
-                </Typography>
-                <Typography variant="body2" color="gray">
-                  Completed Projects
-                </Typography>
-              </Box>
-              <Box sx={{ minWidth: 120 }}>
-                <Typography variant="h4" color={accent} fontWeight="bold" sx={{ fontSize: { xs: 26, sm: 28, md: 32 } }}>
-                  1 +
-                </Typography>
-                <Typography variant="body2" color="gray">
-                  Years of experience
-                </Typography>
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
-
+                  {/* Education */}
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                        <School sx={{ color: theme.palette.primary.main, mr: 2, fontSize: 26 }} />
+                        <Typography variant="h5" fontWeight="bold" sx={{fontSize: { xs: 16, sm: 20, md: 17 }}}>
+                          Education
+                        </Typography>
+                      </Box>
+                      {education.map((edu, index) => (
+                        <Box key={index}>
+                          <Typography variant="h6" fontWeight="bold" sx={{ mb: 1, fontSize: { xs: 14, sm: 16, md: 14 } }}>
+                            {edu.degree}
+                          </Typography>
+                          <Typography variant="body2" color="primary" fontWeight="600" sx={{ mb: 1, fontSize: { xs: 14, sm: 16, md: 12 } }}>
+                            {edu.institution}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: 'block', fontSize: { xs: 14, sm: 16, md: 12 } }}>
+                            {edu.period}
+                          </Typography>
+                          <Typography variant="body2" color={theme.palette.text.secondary} sx={{fontSize: { xs: 14, sm: 16, md: 12 }}}>
+                            {edu.description}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+        </Box>
+    </Box>
   );
 };
 
-export default AboutMe;
+export default AboutSection;

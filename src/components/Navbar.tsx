@@ -14,7 +14,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { useTheme } from "@mui/material/styles";
 import { ColorModeContext } from "../ThemeContext";
 
-const pages = ["Home", "About","Services", "Skills", "Projects", "Contacts"];
+const pages = ["Home", "About", "Skills", "Projects","Certificates", "Contacts"];
 
 const Navbar: React.FC = () => {
   const theme = useTheme();
@@ -82,6 +82,8 @@ const Navbar: React.FC = () => {
             if (page === "About") linkProps = { component: 'a', href: '#about' };
             if (page === "Contacts") linkProps = { component: 'a', href: '#contact' };
             if (page === "Skills") linkProps = { component: 'a', href: '#skills' };
+            if (page === "Projects") linkProps = { component: 'a', href: '#projects' };
+            if (page === "Certificates") linkProps = { component: 'a', href: '#certificates' };
             return (
               <Button
                 key={page}

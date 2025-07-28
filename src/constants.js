@@ -11,12 +11,12 @@ export const projects = [
   // },
   {
     id: 1,
-    title: "CS Prep",
+    title: "Advanced Dashboard",
     description:
-      "A full-stack quiz-based platform designed for GATE/UGC NET students to practice previous year questions and create customized tests.",
-    image: '/assets/work_logo/cs_prep.png',
+      "An interactive, data-driven interface for real-time insights and smart analytics.",
+    image: '/assets/work_logo/Advanced_Dashboard.png',
     tags: ["React JS", "Node.js", "MongoDB", "Express", "HTML", "CSS", "JavaScript"],
-    github: "https://github.com/codingmastr/CSPrep",
+    github: "https://github.com/RajuLopchan/Advanced_Dashboard.git",
     webapp: "https://csprep.netlify.app/",
   },
   {

@@ -25,8 +25,7 @@ const HeroSection = () => {
       id="home"
       key={animateKey}
       sx={{
-        height: { xs: 'auto', md: '100vh' },
-        minHeight: { xs: '100vh', md: 'unset' },
+        height: '100vh',
         backgroundColor: theme.palette.background.default,
         py: { xs: 1.5, sm: 6, md: 8 },
         px: { xs: 2, sm: 2, md: 0 },

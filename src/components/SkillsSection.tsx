@@ -1,12 +1,51 @@
-import { Box, Typography, Paper, useTheme, Fade } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { SkillsInfo } from '../skillsData';
 import React from 'react';
+import Skill3DIcon from './Skill3DIcon';
+
+// Error Boundary for 3D components
+class SkillErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.log('Skill component error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <Box sx={{ 
+          minWidth: { xs: 100, sm: 170, md: 200 },
+          minHeight: { xs: 90, sm: 150, md: 200 },
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'transparent',
+        }}>
+          <Typography variant="body2" color="text.secondary">
+            Skill unavailable
+          </Typography>
+        </Box>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 
 const SkillsSection = () => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
+  // const isLight = theme.palette.mode === 'light';
   // Flatten all skills into a single array
   const allSkills: any[] = SkillsInfo.reduce((arr: any[], cat: any) => arr.concat(cat.skills.map((skill: any) => ({ ...skill, category: cat.title }))), []);
   const filteredSkills = allSkills;
@@ -31,11 +70,19 @@ const SkillsSection = () => {
       }
       scrollAnimationRef.current = requestAnimationFrame(autoScroll);
     };
-    scrollAnimationRef.current = requestAnimationFrame(autoScroll);
+    
+    // Only start auto-scroll if there are enough skills to scroll
+    if (filteredSkills.length > 4) {
+      scrollAnimationRef.current = requestAnimationFrame(autoScroll);
+    }
+    
     return () => {
-      if (scrollAnimationRef.current) cancelAnimationFrame(scrollAnimationRef.current);
+      if (scrollAnimationRef.current) {
+        cancelAnimationFrame(scrollAnimationRef.current);
+        scrollAnimationRef.current = null;
+      }
     };
-  }, [isUserHovering]);
+  }, [isUserHovering, filteredSkills.length]);
 
   const handleMouseEnter = () => setIsUserHovering(true);
   const handleMouseLeave = () => setIsUserHovering(false);
@@ -45,10 +92,10 @@ const SkillsSection = () => {
       id="skills"
       sx={{
         overflowX: 'hidden',
-        maxWidth: '100vw',
+        
         width: { xs: '100%', md: '73%' },
-        minHeight: { xs: '100vh', md: 'unset' },
-        py: { xs: 2.5, sm: 6, md: 8 },
+        minHeight: { xs: 'auto', md: 'unset' },
+        pt: { xs: 5, sm: 6, md: 12 },
         px: { xs: 1.6, sm: 4, md: 0 },
         mx: 'auto',
         fontFamily: 'sans-serif',
@@ -57,59 +104,42 @@ const SkillsSection = () => {
       }}
     >
       <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography variant="h5" fontWeight="bold" fontSize={{ xs: 28, sm: 20, md: 35 }} sx={{ color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main }}>
+        <Typography variant="h5" fontWeight="bold" fontSize={{ xs: 20, sm: 20, md: 25 }} sx={{ color: theme.palette.mode === 'dark' ? '#72e2f9' : theme.palette.primary.main }}>
           SKILLS
         </Typography>
-        <Box sx={{ width: { xs: 64, sm: 96, md: 128 }, height: 4, background: '#8245ec', mx: 'auto', mt: { xs: 1, sm: 2, md: 1.5 }, borderRadius: 2 }} />
-        <Typography color={theme.palette.text.secondary} mt={3} fontSize={{ xs: 14, sm: 16, md: 16 }} fontWeight={600} >
-          A collection of my technical skills and expertise honed through various projects and experiences
+        <Box sx={{ width: { xs: 55, sm: 60, md: 65 }, height: 3, background: '#8245ec', mx: 'auto', mt: { xs: 0.5, sm: 2, md: 0.5 }, borderRadius: 2 }} />
+        <Typography color={theme.palette.text.secondary} mt={2} fontSize={{ xs: 12, sm: 16, md:15 }} fontWeight={600} >
+        Experienced with modern technologies and practical applications.
         </Typography>
       </Box>
       {/* Skills Grid */}
         <Box
           ref={skillsRowRef}
-          sx={{ width: '100%', overflowX: 'auto', display: 'flex', gap: 2,  px: 1,  cursor: 'pointer', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}
+          sx={{ 
+            width: '100%', 
+            overflowX: 'auto', 
+            display: 'flex', 
+            gap: 2,  
+            px: 1,  
+            cursor: 'pointer', 
+            scrollbarWidth: 'none', 
+            '&::-webkit-scrollbar': { display: 'none' },
+            minHeight: { xs: 120, sm: 140, md: 160 }
+          }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           {filteredSkills.map((skill: any, idx: number) => (
-            <Fade in timeout={500 + idx * 50} key={skill.name + idx}>
-              <Paper elevation={0}
-                sx={{
-                  minWidth: { xs: 140, sm: 170, md: 200 },
-                  maxWidth: { xs: 180, sm: 200, md: 240 },  
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: { xs: 120, sm: 150, md: 200 },
-                  cursor: 'pointer',
-                  background: 'transparent',
-                  border: 'none',
-                  boxShadow: 'none',
-                }}
-              >
-                <Box sx={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: '50%',
-                  background: isLight ? '#fff' : '#18181b',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  mb: 1.2,
-                  boxShadow: isLight ? '0 2px 8px 0 #8245ec11' : '0 2px 8px 0 #8245ec33',
-                }}>
-                  <img src={skill.logo} alt={`${skill.name} logo`} style={{ width: 28, height: 28, filter: isLight ? 'none' : undefined }} />
-                </Box>
-                <Typography fontWeight={700} fontSize={{ xs: 15, sm: 16 }} color={theme.palette.text.primary} textAlign="center">
-                  {skill.name}
-                </Typography>
-                <Typography fontSize={11} color={theme.palette.text.secondary} textAlign="center" sx={{ mt: 0.7 }}>
-                  {skill.category}
-                </Typography>
-              </Paper>
-            </Fade>
+            <Box key={`${skill.name}-${idx}`} sx={{ display: 'flex', flexShrink: 0 }}>
+              <SkillErrorBoundary>
+                <Skill3DIcon
+                  logo={skill.logo}
+                  name={skill.name}
+                  category={skill.category}
+                  index={idx}
+                />
+              </SkillErrorBoundary>
+            </Box>
           ))}
         </Box>
     </Box>
